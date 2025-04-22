@@ -1,0 +1,37 @@
+{
+  "name": "stats-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "stats": "./dist/index.js"
+  },
+  "scripts": {
+    "finance": "tsx watch src/index.ts import finance expenses Expenses",
+    "language": "tsx watch src/index.ts import languages Toggl_Track_2024",
+    "build": "npx rimraf dist && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OJailson17/stats-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OJailson17/stats-cli/issues"
+  },
+  "homepage": "https://github.com/OJailson17/stats-cli#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "16.0.0",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.3",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "csv-parse": "^5.6.0",
+    "dotenv": "^16.5.0",
+    "pg": "^8.14.1"
+  }
+}
