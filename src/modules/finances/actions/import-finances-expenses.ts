@@ -1,40 +1,51 @@
-export const importExpenses = async (rows: any[]) => {
-	console.log({ rows });
+import { pg } from 'lib/postgres';
+import { formatDate } from 'utils/format-date';
 
-	// try {
-	// 	await pg.connect();
+type FinanceRow = {
+	description: string;
+	amount: number;
+	date: string;
+	category: string;
+	subcategory: string;
+	account: string;
+	credit_card?: string;
+};
 
-	// 	for (const row of rows) {
-	// 		if (!row['C. Card']) {
-	// 			console.error('❌ Arquivo inválido: Dados precisam ser de expenses');
-	// 			process.exit(1);
-	// 		}
+export const importExpenses = async (rows: FinanceRow[]) => {
+	try {
+		await pg.connect();
 
-	// 		const value = parseInt(String(row.Value || row.Amount).replace('.', ''));
+		for (const row of rows) {
+			if (!row.credit_card) {
+				console.error('❌ Arquivo inválido: Dados precisam ser de expenses');
+				process.exit(1);
+			}
 
-	// 		const date = formatDate(row.Date || row.Confirmation);
-	// 		const description =
-	// 			row[Object.keys(row).find(key => key.trim() === 'Description')];
-	// 		const card = row['C. Card'].replace('-', '');
+			const amount = parseFloat(String(row.amount).replace('.', '')) / 100;
 
-	// 		await pg.query(
-	// 			'INSERT INTO "expenses" ("Description", "Value", "Date", "Category", "Subcategory", "Account", "Card") VALUES ($1, $2, $3, $4, $5, $6, $7)',
-	// 			[
-	// 				description,
-	// 				value,
-	// 				date,
-	// 				row.Category,
-	// 				row.Subcategory,
-	// 				row.Account,
-	// 				card,
-	// 			],
-	// 		);
-	// 	}
+			const date = formatDate(row.date);
+			// const description =
+			// 	row[Object.keys(row).find(key => key.trim() === 'Description')];
+			const card = row.credit_card.replace('-', '');
 
-	// 	console.log('✅ Dados inseridos com sucesso!');
-	// } catch (err) {
-	// 	console.error('❌ Erro ao inserir dados:', err);
-	// } finally {
-	// 	await pg.end();
-	// }
+			await pg.query(
+				'INSERT INTO "stats_finances_expenses" ("description", "amount", "date", "category", "subcategory", "account", "credit_card") VALUES ($1, $2, $3, $4, $5, $6, $7)',
+				[
+					row.description,
+					amount,
+					date,
+					row.category,
+					row.subcategory,
+					row.account,
+					card,
+				],
+			);
+		}
+
+		console.log('✅ Data imported successfully!');
+	} catch (err) {
+		console.error('❌ Something went wrong!', err);
+	} finally {
+		await pg.end();
+	}
 };

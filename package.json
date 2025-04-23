@@ -1,29 +1,24 @@
 {
   "name": "stats-cli",
+  "author": "Jailson de Oliveira (OJailson17)",
   "version": "1.0.0",
+  "description": "CLI that populates postgres with CSV data",
+  "keywords": [
+    "cli"
+  ],
+  "license": "ISC",
   "main": "index.js",
   "bin": {
     "stats": "./dist/index.js"
   },
   "scripts": {
-    "finance": "tsx watch src/index.ts import finance expenses Expenses",
-    "language": "tsx watch src/index.ts import languages Toggl_Track_2024",
-    "build": "npx rimraf dist && tsc"
+    "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OJailson17/stats-cli.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/OJailson17/stats-cli/issues"
-  },
-  "homepage": "https://github.com/OJailson17/stats-cli#readme",
-  "description": "",
   "devDependencies": {
     "@types/node": "16.0.0",
+    "@types/pg": "^8.11.13",
+    "esbuild": "^0.25.2",
+    "fast-glob": "^3.3.3",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.3",
     "typescript": "4.7.4"

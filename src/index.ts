@@ -34,7 +34,7 @@ const financeCommand = importCommand
 				process.exit(1);
 			}
 
-			console.log(`📂 Importing finance data: ${type} from file ${filename}`);
+			console.log(`📂 Importing ${type} from file ${filename}`);
 			await importData(type, filePath);
 		});
 });
@@ -51,8 +51,8 @@ importCommand
 			process.exit(1);
 		}
 
-		console.log(`📚 Importing language learning data from file ${filename}`);
-		await importData('languages', filePath); // You can handle this differently in `importData`
+		console.log(`📚 Importing language data from ${filename}`);
+		await importData('languages', filePath);
 	});
 
 program.parse(process.argv);
