@@ -17,7 +17,7 @@ export const importExpenses = async (rows: FinanceRow[]) => {
 
 		for (const row of rows) {
 			if (!row.credit_card) {
-				console.error('❌ Arquivo inválido: Dados precisam ser de expenses');
+				console.error('❌ Invalid file: Data needs to be expenses');
 				process.exit(1);
 			}
 

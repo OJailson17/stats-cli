@@ -12,6 +12,7 @@
     "stats": "./dist/index.js"
   },
   "scripts": {
+    "dev": "tsx src/index.ts import studies studies-toggl-mar",
     "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js"
   },
   "devDependencies": {

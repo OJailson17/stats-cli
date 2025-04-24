@@ -3,13 +3,14 @@ const path = require('path');
 
 esbuild
 	.build({
-		entryPoints: [path.resolve(__dirname, 'src/index.ts')], // Your main entry point
-		outfile: path.resolve(__dirname, 'dist/index.js'), // Output file
-		bundle: true, // Bundle dependencies
-		platform: 'node', // Target Node.js
-		target: 'node16', // Target a specific Node.js version (adjust as needed)
-		format: 'cjs', // Output format (CommonJS)
-		sourcemap: true, // Generate sourcemaps for debugging
-		external: ['node_modules/*'], // Optionally exclude node_modules
+		entryPoints: [path.resolve(__dirname, 'src/index.ts')],
+		outfile: path.resolve(__dirname, 'dist/index.js'),
+		bundle: true,
+		platform: 'node',
+		target: 'node16',
+		format: 'cjs',
+		sourcemap: false,
+		external: ['node_modules/*'],
+		minify: true,
 	})
 	.catch(() => process.exit(1));
