@@ -7,13 +7,22 @@ type FinanceRow = {
 	date: string;
 	category: string;
 	subcategory: string;
-	account: string;
+	account_name: string;
 	credit_card?: string;
+};
+
+type Account = {
+	id: number;
+	account: string;
 };
 
 export const importIncomes = async (rows: FinanceRow[]) => {
 	try {
 		await pg.connect();
+
+		const { rows: rowAccounts } = await pg.query(
+			`SELECT id, account from stats_bank_accounts`,
+		);
 
 		for (const row of rows) {
 			if (row.credit_card) {
@@ -21,20 +30,22 @@ export const importIncomes = async (rows: FinanceRow[]) => {
 				process.exit(1);
 			}
 
+			const account = rowAccounts.find(
+				acc => acc.account === row.account_name,
+			) as Account;
 			const amount = parseFloat(String(row.amount).replace('.', '')) / 100;
 			const date = formatDate(row.date);
-			// const description =
-			// 	row[Object.keys(row).find(key => key.trim() === 'Description')];
 
 			await pg.query(
-				'INSERT INTO "stats_finances_incomes" ("description", "amount", "date", "category", "subcategory", "account") VALUES ($1, $2, $3, $4, $5, $6)',
+				'INSERT INTO "stats_finances_incomes" ("account_id", "description", "amount", "date", "category", "subcategory", "account_name") VALUES ($1, $2, $3, $4, $5, $6, $7)',
 				[
+					account.id,
 					row.description,
 					amount,
 					date,
 					row.category,
 					row.subcategory,
-					row.account,
+					row.account_name,
 				],
 			);
 		}

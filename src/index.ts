@@ -4,6 +4,7 @@ import { Command } from 'commander';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
 import { importData } from './importer';
+import { createAccounts } from 'modules/finances/actions/create-accounts';
 
 type Type = 'languages' | 'finances' | 'studies';
 
@@ -73,5 +74,14 @@ importCommand
 		console.log(`📚 Importing studies data from ${filename}`);
 		await importData('studies', filePath);
 	});
+
+const createCommand = program
+	.command('create')
+	.description('Import CSV data to PostgreSQL');
+
+// Account subcommand
+createCommand.command('accounts').action(async () => {
+	await createAccounts();
+});
 
 program.parse(process.argv);

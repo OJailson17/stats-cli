@@ -9,7 +9,7 @@ type FinanceRow = {
 	date: string;
 	category: string;
 	subcategory: string;
-	account: string;
+	account_name: string;
 	credit_card?: string;
 };
 
@@ -38,7 +38,7 @@ export const importFinanceData = async (type: any, filePath: any) => {
 		)
 		.on('data', (row: Row) => {
 			rows.push({
-				account: row.Account,
+				account_name: row.Account,
 				amount: row.Amount,
 				category: row.Category,
 				date: row.Confirmation,
