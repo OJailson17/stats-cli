@@ -8,7 +8,8 @@ import { createAccounts } from 'modules/finances/actions/create-accounts';
 import { getAccounts } from 'modules/finances/actions/get-accounts';
 import { getAccount } from 'modules/finances/actions/get-account';
 
-type Type = 'languages' | 'finances' | 'studies';
+// type FilesType = 'languages' | 'finances' | 'studies';
+type FinanceType = 'incomes' | 'expenses' | 'transfers';
 
 const CSV_DIRECTORY = 'F:\\Documentos\\stats-cli';
 
@@ -27,12 +28,12 @@ const financeCommand = importCommand
 	.command('finances')
 	.description('Import finance data');
 
-['incomes', 'expenses', 'transfers'].forEach(type => {
+['incomes', 'expenses', 'transfers'].forEach(financeType => {
 	financeCommand
-		.command(type)
+		.command(financeType)
 		.argument('<file>', 'CSV file name (without extension)')
 		.action(async filename => {
-			const dataType = type as Type;
+			const dataType = financeType as FinanceType;
 			const filePath = path.join(CSV_DIRECTORY, 'finances', `${filename}.csv`);
 
 			if (!existsSync(filePath)) {
@@ -40,8 +41,12 @@ const financeCommand = importCommand
 				process.exit(1);
 			}
 
-			console.log(`📂 Importing ${type} from file ${filename}`);
-			await importData(dataType, filePath);
+			console.log(`📂 Importing ${financeType} from file ${filename}`);
+			await importData({
+				fileType: 'finances',
+				filePath,
+				financeType: dataType,
+			});
 		});
 });
 
@@ -58,7 +63,7 @@ importCommand
 		}
 
 		console.log(`📚 Importing language data from ${filename}`);
-		await importData('languages', filePath);
+		await importData({ fileType: 'languages', filePath });
 	});
 
 // Studies subcommand
@@ -74,7 +79,7 @@ importCommand
 		}
 
 		console.log(`📚 Importing studies data from ${filename}`);
-		await importData('studies', filePath);
+		await importData({ filePath, fileType: 'studies' });
 	});
 
 const createCommand = program

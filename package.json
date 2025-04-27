@@ -12,7 +12,7 @@
     "stats": "./dist/index.js"
   },
   "scripts": {
-    "dev": "tsx src/index.ts import finances expenses ex",
+    "dev": "tsx src/index.ts import finances transfers tr",
     "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js"
   },
   "devDependencies": {
