@@ -12,7 +12,7 @@
     "stats": "./dist/index.js"
   },
   "scripts": {
-    "dev": "tsx src/index.ts create accounts",
+    "dev": "tsx src/index.ts import finances expenses ex",
     "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
   "dependencies": {
     "commander": "^13.1.0",
     "csv-parse": "^5.6.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.5.0",
     "pg": "^8.14.1"
   }

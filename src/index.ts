@@ -5,6 +5,8 @@ import path from 'node:path';
 import { existsSync } from 'node:fs';
 import { importData } from './importer';
 import { createAccounts } from 'modules/finances/actions/create-accounts';
+import { getAccounts } from 'modules/finances/actions/get-accounts';
+import { getAccount } from 'modules/finances/actions/get-account';
 
 type Type = 'languages' | 'finances' | 'studies';
 
@@ -81,7 +83,23 @@ const createCommand = program
 
 // Account subcommand
 createCommand.command('accounts').action(async () => {
+	console.log(`Creating Accounts...`);
 	await createAccounts();
 });
+
+const getCommand = program
+	.command('get')
+	.description('Import CSV data to PostgreSQL');
+
+getCommand.command('accounts').action(async () => {
+	await getAccounts();
+});
+
+getCommand
+	.command('account')
+	.argument('<account>', 'account name')
+	.action(async (account: string) => {
+		await getAccount(account);
+	});
 
 program.parse(process.argv);

@@ -7,7 +7,7 @@ export const createAccounts = async () => {
 		await pg.connect();
 
 		const query = `
-	  INSERT INTO "stats_bank_accounts" ("account", "balance", "initial_balance")
+	  INSERT INTO "stats_finances_bank_accounts" ("account", "balance", "initial_balance")
 	  VALUES
 	    ($1, $2, $3),
 	    ($4, $5, $6),
@@ -20,6 +20,9 @@ export const createAccounts = async () => {
 		const queryValues = accounts;
 
 		await pg.query(query, queryValues);
+		console.log('✅ Accounts Created');
+
+		await pg.end();
 	} catch (error) {
 		await pg.end();
 		console.log(error);
