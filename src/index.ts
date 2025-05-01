@@ -3,13 +3,12 @@
 import { Command } from 'commander';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
-import { importData } from './importer';
 import { createAccounts } from 'modules/finances/actions/create-accounts';
 import { getAccounts } from 'modules/finances/actions/get-accounts';
 import { getAccount } from 'modules/finances/actions/get-account';
-
-// type FilesType = 'languages' | 'finances' | 'studies';
-type FinanceType = 'incomes' | 'expenses' | 'transfers';
+import { readFinancesData } from 'modules/finances/actions/read-finances-data';
+import { importLanguageData } from 'modules/languages/actions/import-languages';
+import { importStudiesData } from 'modules/studies/actions/import-studies';
 
 const CSV_DIRECTORY = 'F:\\Documentos\\stats-cli';
 
@@ -28,12 +27,15 @@ const financeCommand = importCommand
 	.command('finances')
 	.description('Import finance data');
 
-['incomes', 'expenses', 'transfers'].forEach(financeType => {
-	financeCommand
-		.command(financeType)
-		.argument('<file>', 'CSV file name (without extension)')
-		.action(async filename => {
-			const dataType = financeType as FinanceType;
+financeCommand
+	.argument('<files....>', 'CSV file name (without extension)')
+	.action(async (filenames: string[]) => {
+		if (filenames.length < 3) {
+			console.error(`Missing files! Add at least 3 file names`);
+			process.exit(1);
+		}
+		let filePaths: string[] = [];
+		for (const filename of filenames) {
 			const filePath = path.join(CSV_DIRECTORY, 'finances', `${filename}.csv`);
 
 			if (!existsSync(filePath)) {
@@ -41,14 +43,11 @@ const financeCommand = importCommand
 				process.exit(1);
 			}
 
-			console.log(`📂 Importing ${financeType} from file ${filename}`);
-			await importData({
-				fileType: 'finances',
-				filePath,
-				financeType: dataType,
-			});
-		});
-});
+			filePaths.push(filePath);
+		}
+
+		await readFinancesData({ filePaths });
+	});
 
 // Languages subcommand
 importCommand
@@ -63,7 +62,7 @@ importCommand
 		}
 
 		console.log(`📚 Importing language data from ${filename}`);
-		await importData({ fileType: 'languages', filePath });
+		await importLanguageData(filePath);
 	});
 
 // Studies subcommand
@@ -79,7 +78,7 @@ importCommand
 		}
 
 		console.log(`📚 Importing studies data from ${filename}`);
-		await importData({ filePath, fileType: 'studies' });
+		await importStudiesData(filePath);
 	});
 
 const createCommand = program
