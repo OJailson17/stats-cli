@@ -37,9 +37,9 @@ Se você tiver algum interesse em usar ou adaptar pra uso próprio, basta seguir
 
 2. **Instale as dependências**
 
-```bash
-  npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. **Configure as variáveis de ambiente**
    Crie um arquivo `.env` com base no `.env.example`, preenchendo os dados de conexão com seu banco PostgreSQL.
@@ -56,6 +56,8 @@ Se você tiver algum interesse em usar ou adaptar pra uso próprio, basta seguir
    ```bash
    node dist/index.js
    ```
+
+<br>
 
 > Ou use `tsx` durante o desenvolvimento:
 
