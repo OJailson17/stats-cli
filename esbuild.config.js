@@ -3,7 +3,7 @@ const path = require('path');
 
 esbuild
 	.build({
-		entryPoints: [path.resolve(__dirname, 'src/index.ts')],
+		entryPoints: [path.resolve(__dirname, 'src/bin/cli.ts')],
 		outfile: path.resolve(__dirname, 'dist/index.js'),
 		bundle: true,
 		platform: 'node',

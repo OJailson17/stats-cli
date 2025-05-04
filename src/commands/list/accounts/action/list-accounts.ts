@@ -1,6 +1,6 @@
 import { pg } from 'lib/postgres';
 
-export const getAccounts = async () => {
+export const listAccounts = async () => {
 	try {
 		await pg.connect();
 
