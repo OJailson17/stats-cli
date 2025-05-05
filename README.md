@@ -68,13 +68,13 @@ Se você tiver algum interesse em usar ou adaptar pra uso próprio, basta seguir
 
    Se preferir também pode instalar globalmente na sua máquina e usar o comando `stats` para rodar a CLI em qualquer pasta. (_Esse comando pode ser editado no `package.json`_)
 
-<br>
+   <br>
 
-> Ou use `tsx` durante o desenvolvimento:
+   > Ou use `tsx` durante o desenvolvimento:
 
-```bash
-npx tsx src/bin/cli.ts
-```
+   ```bash
+   npx tsx src/bin/cli.ts
+   ```
 
 ## 📂 Formato dos Arquivos CSV
 
