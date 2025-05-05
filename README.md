@@ -2,6 +2,8 @@
 
 `Stats CLI` é uma aplicação de linha de comando (CLI) pra uso pessoal construída com **Node.js** e **TypeScript** para importar dados estruturados de arquivos CSV para um banco de dados **PostgreSQL**.
 
+A ideia com ela é poder ter várias estatísticas pessoais ao longo do tempo, por isso o nome, **Stats CLI**.
+
 ## 🚀 Funcionalidades
 
 - Importa dados de arquivos CSV diretamente para o banco de dados PostgreSQL
@@ -64,7 +66,7 @@ Se você tiver algum interesse em usar ou adaptar pra uso próprio, basta seguir
    node dist/index.js
    ```
 
-   Se preferir também pode instalar globalmente na sua máquina e usar o comando `stats` para rodar a CLI em qualquer pasta. (Esse comando pode ser editado no `package.json`)
+   Se preferir também pode instalar globalmente na sua máquina e usar o comando `stats` para rodar a CLI em qualquer pasta. (_Esse comando pode ser editado no `package.json`_)
 
 <br>
 
