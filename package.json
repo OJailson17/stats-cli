@@ -2,11 +2,13 @@
   "name": "stats-cli",
   "author": "Jailson de Oliveira (OJailson17)",
   "version": "1.0.0",
-  "description": "CLI that populates postgres with CSV data",
+  "description": "CLI em Node.js e TypeScript para importar dados financeiros, de estudos e de idiomas a partir de arquivos CSV para um banco PostgreSQL, com comandos para listar, criar e resetar dados",
   "keywords": [
-    "cli"
+    "cli",
+    "node",
+    "typescript"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "bin": {
     "stats": "./dist/index.js"

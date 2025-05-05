@@ -67,7 +67,7 @@ npx tsx src/bin/cli.ts
 
 ## 📂 Formato dos Arquivos CSV
 
-Cada arquivo CSV deve conter cabeçalhos compatíveis com os campos esperados para o tipo de dado correspondente. Exemplos podem ser encontrados no diretório `/examples`.
+Cada arquivo CSV deve conter cabeçalhos compatíveis com os campos esperados para o tipo de dado correspondente. Eles geralmente são gerados por outras aplicações de onde vem cada tipo de dado, e pra facilitar, não há modificação em seus campos. Os arquivos são simplesmente exportados do seu respectivo app e só é necessário realizar a importação através da CLI. Exemplos da estrutura desses arquivos podem ser encontrados no diretório `/examples`.
 
 ## 🧭 Comandos da CLI
 
