@@ -53,7 +53,7 @@ export const importLanguageData = async (filePath: string) => {
 
 				for (const row of rows) {
 					await pg.query(
-						'INSERT INTO "stats_languages" ("activity", "language", "description", "duration", "start_date", "end_date", "tags") VALUES ($1, $2, $3, $4, $5, $6, $7)',
+						'INSERT INTO "stats_languages_studies" ("activity", "language", "description", "duration", "start_date", "end_date", "tags") VALUES ($1, $2, $3, $4, $5, $6, $7)',
 						[
 							row.activity,
 							row.language,

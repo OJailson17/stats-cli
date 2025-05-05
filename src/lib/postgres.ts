@@ -17,6 +17,7 @@ export const pg = new Client({
 	database: process.env.DB_NAME,
 	password: process.env.DB_PASS,
 	port: Number(process.env.DB_PORT) || 5432,
+	// ssl: false
 	// max: 10,
 	// idleTimeoutMillis: 30000,
 	// connectionTimeoutMillis: 30000,

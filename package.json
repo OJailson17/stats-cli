@@ -15,7 +15,8 @@
   },
   "scripts": {
     "dev": "tsx src/bin/cli.ts import finances Incomes Expenses Transfers",
-    "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js"
+    "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js",
+    "migrate": "node-pg-migrate up --no-verbose"
   },
   "devDependencies": {
     "@types/node": "16.0.0",
@@ -31,6 +32,8 @@
     "csv-parse": "^5.6.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.5.0",
+    "dotenv-expand": "^12.0.2",
+    "node-pg-migrate": "^7.9.1",
     "pg": "^8.14.1"
   }
 }
