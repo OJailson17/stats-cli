@@ -45,17 +45,26 @@ Se você tiver algum interesse em usar ou adaptar pra uso próprio, basta seguir
    Crie um arquivo `.env` com base no `.env.example`, preenchendo os dados de conexão com seu banco PostgreSQL.
    <br>
 
-4. **Compile o projeto**
+4. **Rode as migrations**
+   Antes de rodar as migrations não se esqueça de criar o banco primeiro
+
+   ```bash
+   npm run migrate
+   ```
+
+5. **Compile o projeto**
 
    ```bash
    npm run build
    ```
 
-5. **Execute a CLI**
+6. **Execute a CLI**
 
    ```bash
    node dist/index.js
    ```
+
+   Se preferir também pode instalar globalmente na sua máquina e usar o comando `stats` para rodar a CLI em qualquer pasta. (Esse comando pode ser editado no `package.json`)
 
 <br>
 
