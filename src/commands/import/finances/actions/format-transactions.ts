@@ -8,10 +8,10 @@ import {
 	TransferRow,
 } from 'types/finances';
 import { formatDate } from 'utils/format-date';
+import { importTransactions } from './import-finances-transactions';
 import { importExpenses } from './import-finances-expenses';
 import { importIncomes } from './import-finances-incomes';
 import { importTransfers } from './import-finances-transfers';
-import { updateAccountBalance } from './update-account-balance';
 
 type ImportTransactions = {
 	incomes: IncomeRow[];
@@ -19,7 +19,7 @@ type ImportTransactions = {
 	transfers: TransferRow[];
 };
 
-export const importTransactions = async ({
+export const formatTransactions = async ({
 	expenses,
 	incomes,
 	transfers,
@@ -151,47 +151,12 @@ export const importTransactions = async ({
 		console.log('Importing Transfers');
 		await importTransfers(transfers, accounts);
 		console.log('Joining Transactions');
-		await importAllTransactions(formattedTransactions, accounts);
+		await importTransactions(formattedTransactions, accounts);
 		console.log('Finished Successfully');
 	} catch (error) {
 		console.log(error);
 		process.exit(1);
 	} finally {
 		await pg.end();
-	}
-};
-
-const importAllTransactions = async (
-	transactions: TransactionRow[],
-	accounts: Account[],
-) => {
-	// console.log(transactions)
-	for (const transaction of transactions) {
-		const account = accounts.find(acc => acc.id === transaction.account_id);
-		if (account) {
-			// 1. Atualizar o balance na tabela de accounts
-			await updateAccountBalance({
-				account_id: account.id,
-				amount: transaction.amount,
-			});
-			const { rows: updatedAccount } = await pg.query<Account>(
-				'SELECT balance FROM stats_finances_bank_accounts WHERE id = $1',
-				[account.id],
-			);
-			if (updatedAccount.length > 0) {
-				await pg.query(
-					`INSERT INTO stats_finances_transactions (account_id, date, current_balance, transaction_type, amount, created_at)
-					VALUES ($1, $2, $3, $4, $5, $6)`,
-					[
-						account.id,
-						transaction.date,
-						Number(updatedAccount[0].balance),
-						transaction.transaction_type,
-						transaction.amount,
-						transaction.created_at,
-					],
-				);
-			}
-		}
 	}
 };

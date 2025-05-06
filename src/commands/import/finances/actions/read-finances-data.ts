@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { parse } from 'csv-parse';
-import { importTransactions } from './import-transactions';
+import { formatTransactions } from './format-transactions';
 import type { ExpenseRow, IncomeRow, Row, TransferRow } from 'types/finances';
 
 type ImportFinanceDataProps = {
@@ -72,7 +72,7 @@ export const readFinancesData = async ({
 	await Promise.all(filePaths.map(readFile));
 
 	// Now all data is ready
-	await importTransactions({
+	await formatTransactions({
 		expenses: expensesRows,
 		incomes: incomesRows,
 		transfers: transferRows,
