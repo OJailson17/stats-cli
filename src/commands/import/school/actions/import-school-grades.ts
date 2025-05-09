@@ -58,7 +58,7 @@ export const importSchoolGrades = async (filePath: string) => {
 							row.school_level,
 							row.subject,
 							row.unit,
-							row.school_grade,
+							row.student_grade,
 						],
 					);
 				}
