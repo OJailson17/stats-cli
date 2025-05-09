@@ -1,4 +1,4 @@
-# 📊 Stats CLI
+# 📊 Stats CLI (em desenvolvimento)
 
 `Stats CLI` é uma aplicação de linha de comando (CLI) pra uso pessoal construída com **Node.js** e **TypeScript** para importar dados estruturados de arquivos CSV para um banco de dados **PostgreSQL**.
 
