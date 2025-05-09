@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { registerFinancesSubCommand } from './finances';
 import { registerLanguagesSubCommand } from './languages';
 import { registerPomodorosSubCommand } from './pomodoros';
+import { registerSchoolSubCommand } from './school';
 import { registerStudiesSubCommand } from './studies';
 
 export const registerImportCommand = (program: Command) => {
@@ -13,4 +14,5 @@ export const registerImportCommand = (program: Command) => {
 	registerLanguagesSubCommand(importCommand);
 	registerStudiesSubCommand(importCommand);
 	registerPomodorosSubCommand(importCommand);
+	registerSchoolSubCommand(importCommand);
 };
