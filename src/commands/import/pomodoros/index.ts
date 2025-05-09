@@ -18,7 +18,7 @@ export const registerPomodorosSubCommand = (importCommand: Command) => {
 				process.exit(1);
 			}
 
-			console.log(`📚 Importing pomodoros from ${filename}`);
+			console.log(`💾 Importing pomodoros from ${filename}`);
 			await importPomodoros(filePath);
 		});
 };

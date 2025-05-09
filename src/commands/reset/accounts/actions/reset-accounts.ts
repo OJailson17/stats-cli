@@ -1,7 +1,7 @@
 import { pg } from 'lib/postgres';
 
 export const resetAccounts = async () => {
-	console.log('Resetting Accounts...');
+	console.log('👨🏻‍💻 Resetting Accounts...');
 	try {
 		await pg.connect();
 

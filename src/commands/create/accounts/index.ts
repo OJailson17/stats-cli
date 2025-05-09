@@ -3,7 +3,7 @@ import { createAccounts } from './actions/create-accounts';
 
 export const registerCreateAccountsSubCommand = (createCommand: Command) => {
 	createCommand.command('accounts').action(async () => {
-		console.log(`Creating Accounts...`);
+		console.log(`💾 Creating Accounts...`);
 		await createAccounts();
 	});
 };

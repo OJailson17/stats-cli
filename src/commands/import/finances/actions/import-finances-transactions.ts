@@ -13,10 +13,12 @@ export const importTransactions = async (
 				account_id: account.id,
 				amount: transaction.amount,
 			});
+
 			const { rows: updatedAccount } = await pg.query<Account>(
 				'SELECT balance FROM stats_finances_bank_accounts WHERE id = $1',
 				[account.id],
 			);
+
 			if (updatedAccount.length > 0) {
 				await pg.query(
 					`INSERT INTO stats_finances_transactions (account_id, date, current_balance, transaction_type, amount, created_at)

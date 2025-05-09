@@ -17,7 +17,7 @@ export const registerLanguagesSubCommand = (importCommand: Command) => {
 				process.exit(1);
 			}
 
-			console.log(`📚 Importing language data from ${filename}`);
+			console.log(`💾 Importing language data from ${filename}`);
 			await importLanguageData(filePath);
 		});
 };

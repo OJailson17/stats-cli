@@ -17,7 +17,7 @@ export const registerStudiesSubCommand = (importCommand: Command) => {
 				process.exit(1);
 			}
 
-			console.log(`📚 Importing studies data from ${filename}`);
+			console.log(`👨🏻‍💻 Importing studies data from ${filename}`);
 			await importStudiesData(filePath);
 		});
 };

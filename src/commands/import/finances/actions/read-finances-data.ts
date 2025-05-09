@@ -14,7 +14,7 @@ export const readFinancesData = async ({
 	const expensesRows: ExpenseRow[] = [];
 	const transferRows: TransferRow[] = [];
 
-	console.log('Reading Files...');
+	console.log('💾 Reading Files...');
 	const readFile = (filePath: string) => {
 		return new Promise<void>((resolve, reject) => {
 			fs.createReadStream(filePath)

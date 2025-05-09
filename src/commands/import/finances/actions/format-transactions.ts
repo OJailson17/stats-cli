@@ -30,7 +30,7 @@ export const formatTransactions = async ({
 			`SELECT id, account from stats_finances_bank_accounts`,
 		);
 
-		console.log('Formatting Incomes!');
+		console.log('💾 Formatting Incomes...');
 		const formattedIncomes: TransactionRow[] = incomes.map((income, index) => {
 			const account = accounts.find(
 				acc => acc.account === income.account_name,
@@ -53,7 +53,7 @@ export const formatTransactions = async ({
 			};
 		});
 
-		console.log('Formatting Expenses!');
+		console.log('💾 Formatting Expenses...');
 		const formattedExpenses: TransactionRow[] = expenses.map(
 			(expense, index) => {
 				const account = accounts.find(
@@ -80,7 +80,7 @@ export const formatTransactions = async ({
 			},
 		);
 
-		console.log('Formatting Transfers In!');
+		console.log('💾 Formatting Transfers In...');
 		const formattedTransfersIn: TransactionRow[] = transfers.map(
 			(transfer, index) => {
 				const account = accounts.find(
@@ -107,7 +107,7 @@ export const formatTransactions = async ({
 			},
 		);
 
-		console.log('Formatting Transfers Out!');
+		console.log('💾 Formatting Transfers Out...');
 		const formattedTransfersOut: TransactionRow[] = transfers.map(
 			(transfer, index) => {
 				const account = accounts.find(
@@ -134,7 +134,7 @@ export const formatTransactions = async ({
 			},
 		);
 
-		console.log('Joining all transactions');
+		console.log('💾 Joining all transactions...');
 		const formattedTransactions = [
 			formattedExpenses,
 			formattedIncomes,
@@ -144,13 +144,13 @@ export const formatTransactions = async ({
 			.flat()
 			.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-		console.log('Importing Incomes');
+		console.log('💾 Importing Incomes...');
 		await importIncomes(incomes, accounts);
-		console.log('Importing Expenses');
+		console.log('💾 Importing Expenses...');
 		await importExpenses(expenses, accounts);
-		console.log('Importing Transfers');
+		console.log('💾 Importing Transfers..');
 		await importTransfers(transfers, accounts);
-		console.log('Joining Transactions');
+		console.log('💾 Joining Transactions...');
 		await importTransactions(formattedTransactions, accounts);
 		console.log('Finished Successfully');
 	} catch (error) {
