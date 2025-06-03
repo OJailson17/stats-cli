@@ -14,7 +14,7 @@
     "stats": "./dist/index.js"
   },
   "scripts": {
-    "dev": "tsx src/bin/cli.ts import pomodoros \"history (1)\"",
+    "dev": "tsx src/bin/cli.ts create account newAccount 0 0",
     "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js",
     "migrate": "node-pg-migrate up --no-verbose"
   },

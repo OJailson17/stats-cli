@@ -1,4 +1,5 @@
 import { Command } from 'commander';
+import { registerCreateAccountSubCommand } from './account';
 import { registerCreateAccountsSubCommand } from './accounts';
 
 export const registerCreateCommand = (program: Command) => {
@@ -7,4 +8,5 @@ export const registerCreateCommand = (program: Command) => {
 		.description('Populate the database with something pre-created');
 
 	registerCreateAccountsSubCommand(createCommand);
+	registerCreateAccountSubCommand(createCommand);
 };
