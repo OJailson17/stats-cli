@@ -5,6 +5,9 @@ export const registerCreateAccountSubCommand = (createCommand: Command) => {
 	createCommand
 		.command('account')
 		.argument('<account....>', 'account_name, balance, initial_balance')
+		.description(
+			'create a new account: e.g: account_name balance initial_balance',
+		)
 		.action(async (account: string[]) => {
 			if (account.length < 3) {
 				console.error(
