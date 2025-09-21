@@ -1,7 +1,7 @@
 {
   "name": "stats-cli",
   "author": "Jailson de Oliveira (OJailson17)",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "CLI em Node.js e TypeScript para importar dados financeiros, de estudos e de idiomas a partir de arquivos CSV para um banco PostgreSQL, com comandos para listar, criar e resetar dados",
   "keywords": [
     "cli",
@@ -14,7 +14,7 @@
     "stats": "./dist/index.js"
   },
   "scripts": {
-    "dev": "tsx src/bin/cli.ts create account newAccount 0 0",
+    "dev": "tsx src/bin/cli.ts",
     "build": "tsc --noEmit && npx rimraf dist && node esbuild.config.js",
     "migrate": "node-pg-migrate up --no-verbose"
   },
